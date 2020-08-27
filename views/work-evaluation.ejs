@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>ISO Risk Evaluation Software</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+        #table {
+            margin: auto;
+            max-width: auto;
+            align-items: center;
+            border: 1px solid #9C9C9C;
+            background-color: #ffffff;
+        }
+    </style>
+</head>
+
+<body>
+    <%- include('header'); -%>
+
+        <br>
+        </br>
+        <br>
+        </br>
+
+        <div class="container">
+            <a href="#" class="btn btn-primary btn-xs "><b>+</b>ประเมิณงาน</a>
+            <br></br>
+            <div id="table" class="table-responsive">
+                <table class="table table-striped ">
+                    <thead>
+                        <tr>
+                            <th>ชื่อรานงานการประเมิน</th>
+                            <th>ผู้จัดทำ</th>
+                            <th>วันที่จัดทำ</th>
+                            <th>สถานะ</th>
+                            <th class="text-center">Action</th>
+                        </tr>
+                    </thead>
+                    <tr>
+                        <td>ทะเบียนประเมินงาน 1 ครั้งที่ 1</td>
+                        <td>ผู้ใช้ 1</td>
+                        <td>วัน เดือน ปี</td>
+                        <td><span class="label label-success">เสร็จสิ้น</span></td>
+                        <td class="text-center"><a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-list-alt"></span> Report</a> <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Delete</a></td>
+                    </tr>
+                    <tr>
+                        <td>ทะเบียนประเมินงาน 1 ครั้งที่ 2</td>
+                        <td>ผู้ใช้ 1</td>
+                        <td>วัน เดือน ปี</td>
+                        <td><span class="label label-warning">กำลังดำเนินการ</span></td>
+                        <td class="text-center"><a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-list-alt"></span> Report</a> <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Delete</a></td>
+                    </tr>
+                    <tr>
+                        <td>ทะเบียนประเมินงาน 1 ครั้งที่ 3</td>
+                        <td>ผู้ใช้ 2</td>
+                        <td>วัน เดือน ปี</td>
+                        <td><span class="label label-warning">กำลังดำเนินการ</span></td>
+                        <td class="text-center"><a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-list-alt"></span> Report</a> <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Delete</a></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+</body>
+
+</html>

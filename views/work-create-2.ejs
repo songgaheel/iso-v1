@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>ISO Risk Evaluation Software</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <style>
+        .container {
+            margin-top: auto;
+            max-width: auto;
+            align-items: center;
+            border: 1px solid #9C9C9C;
+            background-color: #ffffff;
+        }
+    </style>
+</head>
+
+<body>
+    <%- include('header.ejs') -%>
+        <br>
+        </br>
+        <br>
+        </br>
+        <div id="login">
+            <h3 class="text-center pt-5">
+                <%= data.pageName %>
+            </h3>
+            <div class="container">
+                <form>
+                    <div id="table" class="table-responsive">
+                        <table class="table table-striped ">
+                            <thead>
+                                <tr>
+                                    <th>พื้นที่ภายใน</th>
+                                    <th>พื้นที่ภายนอก</th>
+                                </tr>
+                            </thead>
+                            <tr>
+                                <td>
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input" value="">
+                                        <label class="form-check-label">Inside 1</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input" value="">
+                                        <label class="form-check-label">Inside 2</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input" value="">
+                                        <label class="form-check-label">Inside 3</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input" value="">
+                                        <label class="form-check-label">Inside 4</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input" value="">
+                                        <label class="form-check-label">Inside 5</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input" value="">
+                                        <label class="form-check-label">Inside 6</label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input" value="">
+                                        <label class="form-check-label">Outside 1</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input" value="">
+                                        <label class="form-check-label">Outside 2</label>
+                                    </div>
+
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" name="submit" class="btn btn-info btn-md" value="Next">
+                    </div>
+                </form>
+            </div>
+        </div>
+</body>
+
+</html>
