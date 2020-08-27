@@ -23,7 +23,17 @@ const workevalCreate2 = (req, res, next) => {
         }
     });
 }
+const workevalCreate3 = (req, res, next) => {
+    res.render("work-eval-create-3", {
+        data: {
+            pageName: "ความเสี่ยงในพื้นที่ของพื้นที่ภายนอก",
+            message: "ISO Risk Evaluation Software",
+        }
+    });
+}
+
 
 module.exports.workevaluation = workevaluation;
 module.exports.workevalCreate1 = workevalCreate1;
 module.exports.workevalCreate2 = workevalCreate2;
+module.exports.workevalCreate3 = workevalCreate3;
