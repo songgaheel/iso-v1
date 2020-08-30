@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>ISO Risk Evaluation Software</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <style>
+        .container {
+            margin-top: auto;
+            max-width: auto;
+            align-items: center;
+            border: 1px solid #9C9C9C;
+            background-color: #ffffff;
+        }
+    </style>
+    <script>
+        $(document).ready(function() {
+            var i = 1;
+            $('#add').click(function() {
+                i++;
+                $('#dynamic_field').append('<tr id="row' + i + '"><td><button type="button" name="remove" id="' + i + '" class="btn btn-danger btn_remove">X</button></td>  <td><label class="form-check-label">กิจกรรม 1</label></td><td>งานประจำ</td><td>ภายใน</td><td>Staff</td><td>Staff</td><td>Staff</td></tr>');
+            });
+            $(document).on('click', '.btn_remove', function() {
+                var button_id = $(this).attr("id");
+                $('#row' + button_id + '').remove();
+            });
+            $('#submit').click(function() {
+                $.ajax({
+                    url: "#",
+                    method: "POST",
+                    data: $('#add_name').serialize(),
+                    success: function(data) {
+                        alert(data);
+                        $('#add_name')[0].reset();
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <%- include('header.ejs') -%>
+        <br>
+        </br>
+        <br>
+        </br>
+        <div id="login">
+            <h3 class="text-center pt-5">
+                <%= data.pageName %>
+            </h3>
+            <div class="container">
+                <p></p>
+                <div class="form-group">
+                    <label for="username" class="text-info">ชื่อทะเบียนงาน:</label><br>
+                    <input type="text" name="username" id="username" class="form-control" disabled>
+                </div>
+                <div class="form-group">
+                    <label for="password" class="text-info">ชื่อผู้จัดทำ:</label><br>
+                    <input type="text" name="password" id="password" class="form-control" disabled>
+                </div>
+                <div class="form-group">
+                    <label for="company" class="text-info">บริษัท:</label><br>
+                    <input type="text" name="company" id="company" placeholder="company 1" class="form-control" disabled>
+                </div>
+                <div class="form-group">
+                    <label for="department" class="text-info">หน่วยงาน:</label><br>
+                    <input type="text" name="department" id="department" placeholder="department 1" class="form-control" disabled>
+                </div>
+
+                <div class="form-group">
+                    <label for="number" class="text-info">ครั้งที่:</label><br>
+                    <input type="text" name="number" id="number" class="form-control" placeholder="1" disabled>
+                </div>
+                <div class="form-group">
+                    <label for="date" class="text-info">ชื่อผู้ประเมิน:</label><br>
+                    <input type="text" name="date" id="date" class="form-control" placeholder="admin" disabled>
+                </div>
+                <div class="form-group">
+                    <label for="company" class="text-info">บริษัท:</label><br>
+                    <select name="company" id="company" class="form-control" placeholder="ประจำปี" disabled>
+                            <option>ประจำปี</option>
+                            <option>ก่อน</option>
+                            <option>ระหว่าง</option>
+                            <option>หลัง</option>
+                            <option>อุบัติการณ์</option>
+                        </select>
+                </div>
+            </div>
+            <br></br>
+
+            <div class="container">
+                <center>
+                    <h3 class="text-center pt-5">
+                        พื้นที่ภายใน
+                    </h3>
+                </center>
+                <form>
+                    <br></br>
+                    <h4>Inside 1 / กิจกรรม1</h4>
+                    <p></p>
+                    <div id="table" class="table-responsive">
+                        <table class="table table-striped " id="dynamic_field">
+                            <thead>
+                                <tr>
+
+                                    <th>ความเสี่ยง/ลักษณะปัญหา</th>
+                                    <th>วิธีการแก้ไข</th>
+                                </tr>
+                            </thead>
+                            <tr>
+
+                                <td>
+                                    <label class="form-check-label">กิจกรรม 1</label>
+                                </td>
+                                <td><input type="text" name="instruction" id="instruction" class="form-control"></td>
+                            </tr>
+                        </table>
+                    </div>
+
+
+
+                    <br></br>
+                    <h4>Inside 2 / กิจกรรม1</h4>
+                    <p></p>
+                    <div id="table" class="table-responsive">
+                        <table class="table table-striped " id="dynamic_field">
+                            <thead>
+                                <tr>
+
+                                    <th>ความเสี่ยง/ลักษณะปัญหา</th>
+                                    <th>วิธีการแก้ไข</th>
+                                </tr>
+                            </thead>
+                            <tr>
+
+                                <td>
+                                    <label class="form-check-label">กิจกรรม 1</label>
+                                </td>
+                                <td><input type="text" name="instruction" id="instruction" class="form-control"></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <br></br>
+                    <h4>Inside 3 / กิจกรรม1</h4>
+                    <p></p>
+                    <div id="table" class="table-responsive">
+                        <table class="table table-striped " id="dynamic_field">
+                            <thead>
+                                <tr>
+
+                                    <th>ความเสี่ยง/ลักษณะปัญหา</th>
+                                    <th>วิธีการแก้ไข</th>
+                                </tr>
+                            </thead>
+                            <tr>
+
+                                <td>
+                                    <label class="form-check-label">กิจกรรม 1</label>
+                                </td>
+                                <td><input type="text" name="instruction" id="instruction" class="form-control"></td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="submit" name="submit" class="btn btn-info btn-md" value="Next">
+                    </div>
+                </form>
+            </div>
+            <br></br>
+            <div class="container">
+                <center>
+                    <h3 class="text-center pt-5">
+                        พื้นที่ภายนอก
+                    </h3>
+                </center>
+                <form>
+                    <br></br>
+                    <h4>Outside 1 / กิจกรรม1</h4>
+                    <p></p>
+                    <div id="table" class="table-responsive">
+                        <table class="table table-striped " id="dynamic_field">
+                            <thead>
+                                <tr>
+
+                                    <th>ความเสี่ยง/ลักษณะปัญหา</th>
+                                    <th>วิธีการแก้ไข</th>
+                                </tr>
+                            </thead>
+                            <tr>
+
+                                <td>
+                                    <label class="form-check-label">กิจกรรม 1</label>
+                                </td>
+                                <td><input type="text" name="instruction" id="instruction" class="form-control"></td>
+                            </tr>
+                        </table>
+                    </div>
+
+
+
+                    <br></br>
+                    <h4>Outside 2 / กิจกรรม1</h4>
+                    <p></p>
+                    <div id="table" class="table-responsive">
+                        <table class="table table-striped " id="dynamic_field">
+                            <thead>
+                                <tr>
+
+                                    <th>ความเสี่ยง/ลักษณะปัญหา</th>
+                                    <th>วิธีการแก้ไข</th>
+                                </tr>
+                            </thead>
+                            <tr>
+
+                                <td>
+                                    <label class="form-check-label">กิจกรรม 1</label>
+                                </td>
+                                <td><input type="text" name="instruction" id="instruction" class="form-control"></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <br></br>
+                    <h4>Outside 3 / กิจกรรม1</h4>
+                    <p></p>
+                    <div id="table" class="table-responsive">
+                        <table class="table table-striped " id="dynamic_field">
+                            <thead>
+                                <tr>
+
+                                    <th>ความเสี่ยง/ลักษณะปัญหา</th>
+                                    <th>วิธีการแก้ไข</th>
+                                </tr>
+                            </thead>
+                            <tr>
+
+                                <td>
+                                    <label class="form-check-label">กิจกรรม 1</label>
+                                </td>
+                                <td><input type="text" name="instruction" id="instruction" class="form-control"></td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="submit" name="submit" class="btn btn-info btn-md" value="Next">
+                    </div>
+                </form>
+            </div>
+            <br></br>
+        </div>
+</body>

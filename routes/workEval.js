@@ -15,6 +15,9 @@ router
     .get("/work/evaluation/create/10", workEvalController.workevalCreate10)
     .get("/work/evaluation/create/11", workEvalController.workevalCreate11)
     .get("/work/evaluation/create/12", workEvalController.workevalCreate12)
-    .get("/work/evaluation/create/13", workEvalController.workevalCreate13);
+    .get("/work/evaluation/create/13", workEvalController.workevalCreate13)
+    .get("/work/evaluation/report/1", workEvalController.workevalReport1)
+    .get("/work/evaluation/report/2", workEvalController.workevalReport2)
+    .get("/work/evaluation/report/3", workEvalController.workevalReport3);
 
 module.exports = router;

@@ -111,6 +111,30 @@ const workevalCreate13 = (req, res, next) => {
         }
     });
 }
+const workevalReport1 = (req, res, next) => {
+    res.render("work-eval-report-1", {
+        data: {
+            pageName: "ทะเบียนความเสี่ยง",
+            message: "ISO Risk Evaluation Software",
+        }
+    });
+}
+const workevalReport2 = (req, res, next) => {
+    res.render("work-eval-report-2", {
+        data: {
+            pageName: "รายงานการประเมินความเสี่ยงด้านสิ่งแวดล้อม",
+            message: "ISO Risk Evaluation Software",
+        }
+    });
+}
+const workevalReport3 = (req, res, next) => {
+    res.render("work-eval-report-3", {
+        data: {
+            pageName: "รายงานการประเมินความเสี่ยงด้านความปลอดภัย",
+            message: "ISO Risk Evaluation Software",
+        }
+    });
+}
 
 module.exports.workevaluation = workevaluation;
 module.exports.workevalCreate1 = workevalCreate1;
@@ -126,3 +150,6 @@ module.exports.workevalCreate10 = workevalCreate10;
 module.exports.workevalCreate11 = workevalCreate11;
 module.exports.workevalCreate12 = workevalCreate12;
 module.exports.workevalCreate13 = workevalCreate13;
+module.exports.workevalReport1 = workevalReport1;
+module.exports.workevalReport2 = workevalReport2;
+module.exports.workevalReport3 = workevalReport3;

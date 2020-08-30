@@ -18,31 +18,30 @@
             background-color: #ffffff;
         }
     </style>
-     <script>  
-        $(document).ready(function(){  
-             var i=1;  
-             $('#add').click(function(){  
-                  i++;  
-                  $('#dynamic_field').append('<tr id="row'+i+'"><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td>  <td><label class="form-check-label">กิจกรรม 1</label></td><td>งานประจำ</td><td>ภายใน</td><td>Staff</td><td>Staff</td><td>Staff</td></tr>');  
-             });  
-             $(document).on('click', '.btn_remove', function(){  
-                  var button_id = $(this).attr("id");   
-                  $('#row'+button_id+'').remove();  
-             });  
-             $('#submit').click(function(){            
-                  $.ajax({  
-                       url:"#",  
-                       method:"POST",  
-                       data:$('#add_name').serialize(),  
-                       success:function(data)  
-                       {  
-                            alert(data);  
-                            $('#add_name')[0].reset();  
-                       }  
-                  });  
-             });  
-        });  
-        </script>
+    <script>
+        $(document).ready(function() {
+            var i = 1;
+            $('#add').click(function() {
+                i++;
+                $('#dynamic_field').append('<tr id="row' + i + '"><td><button type="button" name="remove" id="' + i + '" class="btn btn-danger btn_remove">X</button></td>  <td><label class="form-check-label">กิจกรรม 1</label></td><td>งานประจำ</td><td>ภายใน</td><td>Staff</td><td>Staff</td><td>Staff</td></tr>');
+            });
+            $(document).on('click', '.btn_remove', function() {
+                var button_id = $(this).attr("id");
+                $('#row' + button_id + '').remove();
+            });
+            $('#submit').click(function() {
+                $.ajax({
+                    url: "#",
+                    method: "POST",
+                    data: $('#add_name').serialize(),
+                    success: function(data) {
+                        alert(data);
+                        $('#add_name')[0].reset();
+                    }
+                });
+            });
+        });
+    </script>
 </head>
 
 <body>
@@ -56,10 +55,11 @@
                 <%= data.pageName %>
             </h3>
             <div class="container">
-                <br></br>
-                <h4>Inside 1</h4>
-                <p></p>
+
                 <form>
+                    <br></br>
+                    <h4>Inside 1</h4>
+                    <p></p>
                     <div id="table" class="table-responsive">
                         <table class="table table-striped " id="dynamic_field">
                             <thead>
@@ -74,7 +74,7 @@
                                 </tr>
                             </thead>
                             <tr>
-                                <td><button type="button" name="add" id="add" class="btn btn-success">Add More</button></td>  
+                                <td><button type="button" name="add" id="add" class="btn btn-success">Add More</button></td>
                                 <td>
                                     <label class="form-check-label">กิจกรรม 1</label>
                                 </td>
@@ -107,7 +107,7 @@
                                 </tr>
                             </thead>
                             <tr>
-                                <td><button type="button" name="add" id="add" class="btn btn-success">Add More</button></td>  
+                                <td><button type="button" name="add" id="add" class="btn btn-success">Add More</button></td>
                                 <td>
                                     <label class="form-check-label">กิจกรรม 1</label>
                                 </td>
@@ -138,7 +138,7 @@
                                 </tr>
                             </thead>
                             <tr>
-                                <td><button type="button" name="add" id="add" class="btn btn-success">Add More</button></td>  
+                                <td><button type="button" name="add" id="add" class="btn btn-success">Add More</button></td>
                                 <td>
                                     <label class="form-check-label">กิจกรรม 1</label>
                                 </td>

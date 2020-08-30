@@ -6,6 +6,7 @@ const authRoute = require("./routes/auth");
 const homeController = require("./controllers/home-controller");
 const workRoute = require("./routes/work");
 const workEvalRoute = require("./routes/workEval");
+const workInRoute = require("./routes/workIn");
 
 const app = express();
 
@@ -22,6 +23,7 @@ app.use(bodyParser.json());
 app.use(authRoute);
 app.use(workRoute);
 app.use(workEvalRoute);
+app.use(workInRoute);
 app.get("/home", homeController.home);
 
 

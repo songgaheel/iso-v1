@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>ISO Risk Evaluation Software</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <style>
+        .container {
+            margin-top: auto;
+            max-width: auto;
+            align-items: center;
+            border: 1px solid #9C9C9C;
+            background-color: #ffffff;
+        }
+    </style>
+    <script>
+        $(document).ready(function() {
+            var i = 1;
+            $('#add').click(function() {
+                i++;
+                $('#dynamic_field').append('<tr id="row' + i + '"><td><button type="button" name="remove" id="' + i + '" class="btn btn-danger btn_remove">X</button></td>  <td><label class="form-check-label">กิจกรรม 1</label></td><td>งานประจำ</td><td>ภายใน</td><td>Staff</td><td>Staff</td><td>Staff</td></tr>');
+            });
+            $(document).on('click', '.btn_remove', function() {
+                var button_id = $(this).attr("id");
+                $('#row' + button_id + '').remove();
+            });
+            $('#submit').click(function() {
+                $.ajax({
+                    url: "#",
+                    method: "POST",
+                    data: $('#add_name').serialize(),
+                    success: function(data) {
+                        alert(data);
+                        $('#add_name')[0].reset();
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <%- include('header.ejs') -%>
+        <br>
+        </br>
+        <br>
+        </br>
+        <div id="login">
+            <h3 class="text-center pt-5">
+                <%= data.pageName %>
+            </h3>
+            <div class="container">
+
+                <form>
+                    <br></br>
+                    <h4>Inside 1 / กิจกรรม1</h4>
+                    <p></p>
+                    <div id="table" class="table-responsive">
+                        <table class="table table-striped " id="dynamic_field">
+                            <thead>
+                                <tr>
+                                    <th rowspan="2"></th>
+                                    <th rowspan="2">ประเด็นความเสี่ยง</th>
+                                    <th colspan="5">
+                                        <center>โอกาส</center>
+                                    </th>
+                                    <th colspan="2">
+                                        <center>ความรุนแรง</center>
+                                    </th>
+                                </tr>
+                                <tr>
+
+                                    <th>
+                                        <center>P1</center>
+                                    </th>
+                                    <th>
+                                        <center>P2</center>
+                                    </th>
+                                    <th>
+                                        <center>P3</center>
+                                    </th>
+                                    <th>
+                                        <center>P4</center>
+                                    </th>
+                                    <th>
+                                        <center>P5</center>
+                                    </th>
+                                    <th>
+                                        <center>R1</center>
+                                    </th>
+                                    <th>
+                                        <center>R2</center>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tr>
+                                <td><button type="button" name="add" id="add" class="btn btn-success">Add More</button></td>
+                                <td>
+                                    <label class="form-check-label">กิจกรรม 1</label>
+                                </td>
+                                <td>งานประจำ</td>
+                                <td>ภายใน</td>
+                                <td>Staff</td>
+                                <td>Staff</td>
+                                <td>Staff</td>
+                            </tr>
+                        </table>
+                    </div>
+
+
+
+                    <br></br>
+                    <h4>Inside 2 / กิจกรรม1</h4>
+                    <p></p>
+
+                    <div id="table" class="table-responsive">
+                        <table class="table table-striped ">
+                            <thead>
+                                <tr>
+                                    <th rowspan="2"></th>
+                                    <th rowspan="2">ประเด็นความเสี่ยง</th>
+                                    <th colspan="5">
+                                        <center>โอกาส</center>
+                                    </th>
+                                    <th colspan="2">
+                                        <center>ความรุนแรง</center>
+                                    </th>
+                                </tr>
+                                <tr>
+
+                                    <th>
+                                        <center>P1</center>
+                                    </th>
+                                    <th>
+                                        <center>P2</center>
+                                    </th>
+                                    <th>
+                                        <center>P3</center>
+                                    </th>
+                                    <th>
+                                        <center>P4</center>
+                                    </th>
+                                    <th>
+                                        <center>P5</center>
+                                    </th>
+                                    <th>
+                                        <center>R1</center>
+                                    </th>
+                                    <th>
+                                        <center>R2</center>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tr>
+                                <td><button type="button" name="add" id="add" class="btn btn-success">Add More</button></td>
+                                <td>
+                                    <label class="form-check-label">กิจกรรม 1</label>
+                                </td>
+                                <td>งานประจำ</td>
+                                <td>ภายใน</td>
+                                <td>Staff</td>
+                                <td>Staff</td>
+                                <td>Staff</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <br></br>
+                    <h4>Inside 3 / กิจกรรม1</h4>
+                    <p></p>
+
+                    <div id="table" class="table-responsive">
+                        <table class="table table-striped ">
+                            <thead>
+                                <tr>
+                                    <th rowspan="2"></th>
+                                    <th rowspan="2">ประเด็นความเสี่ยง</th>
+                                    <th colspan="5">
+                                        <center>โอกาส</center>
+                                    </th>
+                                    <th colspan="2">
+                                        <center>ความรุนแรง</center>
+                                    </th>
+                                </tr>
+                                <tr>
+
+                                    <th>
+                                        <center>P1</center>
+                                    </th>
+                                    <th>
+                                        <center>P2</center>
+                                    </th>
+                                    <th>
+                                        <center>P3</center>
+                                    </th>
+                                    <th>
+                                        <center>P4</center>
+                                    </th>
+                                    <th>
+                                        <center>P5</center>
+                                    </th>
+                                    <th>
+                                        <center>R1</center>
+                                    </th>
+                                    <th>
+                                        <center>R2</center>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tr>
+                                <td><button type="button" name="add" id="add" class="btn btn-success">Add More</button></td>
+                                <td>
+                                    <label class="form-check-label">กิจกรรม 1</label>
+                                </td>
+                                <td>งานประจำ</td>
+                                <td>ภายใน</td>
+                                <td>Staff</td>
+                                <td>Staff</td>
+                                <td>Staff</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="submit" name="submit" class="btn btn-info btn-md" value="Next">
+                    </div>
+                </form>
+            </div>
+            <br></br>
+        </div>
+</body>
+
+</html>
