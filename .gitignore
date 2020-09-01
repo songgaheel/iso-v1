@@ -1,1 +1,5 @@
 node_modules
+
+temp.js
+temp-controller.js
+temp.ejs
