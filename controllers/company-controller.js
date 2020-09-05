@@ -99,8 +99,8 @@ async function AreaList(req, res, next) {
         html = html + '<tr>';
         html = html + '<td>' + data.areas[index].name + '</td>';
         html = html + '<td>' + data.areas[index].areaType + '</td>';
-        html = html + '<td><a type="button" name="areaLink" class="btn btn-success btn-xs areaLink"><span class="glyphicon glyphicon-list-alt"></span> Detail</a> ';
-        html = html + '<button type="button" name="deleteDepartment" data-id="' + data.areas[index]._id + '" class="btn btn-danger btn-xs deleteDepartment"><span class="glyphicon glyphicon-remove"></span> Delete</button></td>';
+        html = html + '<td><a type="button" name="activityLink" data-id="' + data.areas[index]._id + '" class="btn btn-success btn-xs activityLink"><span class="glyphicon glyphicon-list-alt"></span> Detail</a> ';
+        html = html + '<button type="button" name="deleteArea" data-id="' + data.areas[index]._id + '" class="btn btn-danger btn-xs deleteArea"><span class="glyphicon glyphicon-remove"></span> Delete</button></td>';
         html = html + '</tr>'
     }
     res.send(html);
@@ -124,6 +124,17 @@ async function AreaCreate(req, res, next) {
     console.log('Create Area successful');
 }
 
+async function AreaDelete(req, res, next) {
+    const department = req.body.department;
+    const area = req.body.area;
+    const Updatecompany = await Department.updateOne({ _id: department }, {
+        $pull: { departments: area }
+    });
+    const data = await Area.deleteOne({ _id: area });
+
+    res.send('delete area complete');
+}
+
 
 
 module.exports.CompanyRender = CompanyRender;
@@ -133,3 +144,4 @@ module.exports.DepartmentDelete = DepartmentDelete;
 module.exports.DepartmentRender = DepartmentRender;
 module.exports.AreaList = AreaList;
 module.exports.AreaCreate = AreaCreate;
+module.exports.AreaDelete = AreaDelete;

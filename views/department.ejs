@@ -117,19 +117,17 @@
             });
         });
 
-        $(document).on('click', '.deleteDepartment', function() {
-            var department_id = $(this).data("id");
-            var company_id = $('#company').val();
+        $(document).on('click', '.deleteArea', function() {
+            var area_id = $(this).data("id");
+            var department_id = $('#department').val();
 
             var data = {
-                company: company_id,
-                department: department_id
+                department: department_id,
+                area: area_id
             };
 
-            alert('delete ' + department_id);
-
             $.ajax({
-                url: "/company-structure/company/department/delete",
+                url: "/company-structure/company/department/" + department_id + "/area/delete",
                 method: "DELETE",
                 data: JSON.stringify(data),
                 contentType: 'application/json',
@@ -140,9 +138,9 @@
             });
         });
 
-        $(document).on('click', '.areaLink', function() {
+        $(document).on('click', '.activityLink', function() {
             var department_id = $(this).data("id");
-            alert('areaLink ' + department_id);
+            alert('activityLink ' + department_id);
         });
 
         function fetch_item_data() {
