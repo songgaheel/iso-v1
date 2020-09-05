@@ -32,12 +32,12 @@
             <h2 align="center">
                 <%= data.name  %>
             </h2>
-            <input type="text" id="company" value="<%= data._id  %>" hidden disabled>
+            <input type="text" id="department" value="<%= data._id  %>" hidden disabled>
             <br />
             <div class="table-responsive">
                 <table class="table table-bordered" id="crud_table">
                     <tr>
-                        <th>Department Name</th>
+                        <th>Area Name</th>
                         <th><button type="button" name="add" id="add" class="btn btn-success btn-xs">+</button></th>
                     </tr>
                     <tr>
@@ -122,9 +122,15 @@
             });
         });
 
+        $(document).on('click', '.areaLink', function() {
+            var department_id = $(this).data("id");
+            alert('areaLink ' + department_id);
+        });
+
         function fetch_item_data() {
+            var department_id = $('#department').val();
             $.ajax({
-                url: "/company-structure/company",
+                url: "/company-structure/company/department/" + department_id + "/area",
                 method: "GET",
                 success: function(data) {
                     $('#inserted_item_data').html(data);

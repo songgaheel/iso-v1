@@ -1,11 +1,12 @@
 const express = require('express');
 const router = express.Router();
-const workController = require("../controllers/work-controller");
+const compController = require("../controllers/company-controller");
 router
-    .get("/work/create/1", workController.workCreate1)
-    .get("/work/create/2", workController.workCreate2)
-    .get("/work/create/3", workController.workCreate3)
-    .get("/work/create/4", workController.workCreate4)
-    .get("/work/registration", workController.workRegistration);
+    .get("/company-structure", compController.CompanyRender)
+    .get("/company-structure/company", compController.DepartmentList)
+    .post("/company-structure/company/department/create", compController.DepartmentCreate)
+    .delete("/company-structure/company/department/delete", compController.DepartmentDelete)
+    .get("/company-structure/company/department/:id", compController.DepartmentRender)
+    .get("/company-structure/company/department/:id/area", compController.AreaList);
 
 module.exports = router;
