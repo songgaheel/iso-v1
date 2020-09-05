@@ -92,17 +92,36 @@ async function AreaList(req, res, next) {
     const department_id = req.params.id;
     const data = await Department.findOne({ _id: department_id })
         .populate('areas');
-    console.log(data);
-    var html = '<br/><h3 align="center">Department List</h3><table class="table table-bordered table-striped"><tr><th>Department Name</th><th></th></tr>';
+    //console.log(data);
+    var html = '<br/><h3 align="center">Area List</h3><table class="table table-bordered table-striped"><tr><th>Area Name</th><th>Area Type</th><th></th></tr>';
     for (let index = 0; index < data.areas.length; index++) {
 
         html = html + '<tr>';
         html = html + '<td>' + data.areas[index].name + '</td>';
-        html = html + '<td><a type="button" name="areaLink" href="/company-structure/company/department/' + data.areas[index]._id + '" class="btn btn-success btn-xs areaLink"><span class="glyphicon glyphicon-list-alt"></span> Detail</a> ';
+        html = html + '<td>' + data.areas[index].areaType + '</td>';
+        html = html + '<td><a type="button" name="areaLink" class="btn btn-success btn-xs areaLink"><span class="glyphicon glyphicon-list-alt"></span> Detail</a> ';
         html = html + '<button type="button" name="deleteDepartment" data-id="' + data.areas[index]._id + '" class="btn btn-danger btn-xs deleteDepartment"><span class="glyphicon glyphicon-remove"></span> Delete</button></td>';
         html = html + '</tr>'
     }
     res.send(html);
+}
+
+async function AreaCreate(req, res, next) {
+    const department = req.body.department;
+    const area = req.body.areas;
+    const newArea = [{}];
+
+    for (let index = 0; index < area.length; index++) {
+        newArea[index] = Area(area[index]);
+        await newArea[index].save();
+        const UpdateDepartment = await Department.updateOne({ _id: department }, {
+            $push: { areas: newArea[index]._id }
+        });
+        if (index == area.length - 1) {
+            res.send('Create Area successful');
+        }
+    }
+    console.log('Create Area successful');
 }
 
 
@@ -113,3 +132,4 @@ module.exports.DepartmentCreate = DepartmentCreate;
 module.exports.DepartmentDelete = DepartmentDelete;
 module.exports.DepartmentRender = DepartmentRender;
 module.exports.AreaList = AreaList;
+module.exports.AreaCreate = AreaCreate;

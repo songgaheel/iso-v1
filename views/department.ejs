@@ -38,10 +38,15 @@
                 <table class="table table-bordered" id="crud_table">
                     <tr>
                         <th>Area Name</th>
+                        <th>Area Type</th>
                         <th><button type="button" name="add" id="add" class="btn btn-success btn-xs">+</button></th>
                     </tr>
                     <tr>
-                        <td contenteditable="true" class="department_name"></td>
+                        <td contenteditable="true" class="area_name"></td>
+                        <td><select class="form-control area_type">
+                            <option value="inside">inside</option>
+                            <option value="outside">outside</option>
+                          </select></td>
                         <td></td>
                     </tr>
                 </table>
@@ -62,7 +67,8 @@
         $('#add').click(function() {
             count = count + 1;
             var html_code = "<tr id='row" + count + "'>";
-            html_code += "<td contenteditable='true' class='department_name'></td>";
+            html_code += "<td contenteditable='true' class='area_name'></td>";
+            html_code += "<td contenteditable='true' ><select class='form-control area_type'><option value='inside'>inside</option><option value='outside'>outside</option></select></td>";
             html_code += "<td><button type='button' name='remove' data-row='row" + count + "' class='btn btn-danger btn-xs remove'>-</button></td>";
             html_code += "</tr>";
             $('#crud_table').append(html_code);
@@ -74,17 +80,29 @@
         });
 
         $('#save').click(function() {
-            var company_id = $('#company').val();
-            var department_name = [];
-            $('.department_name').each(function() {
-                department_name.push($(this).text());
+            var department_id = $('#department').val();
+            var area_name = [];
+            var area_type = [];
+            $('.area_name').each(function() {
+                area_name.push($(this).text());
             });
+            $('.area_type').each(function() {
+                area_type.push($(this).val());
+            });
+            var areas = [{}];
+            for (let index = 0; index < area_name.length; index++) {
+                areas[index] = {
+                    name: area_name[index],
+                    areaType: area_type[index]
+                };
+            }
+            alert('Create new Area');
             var data = {
-                company_id: company_id,
-                department: department_name
+                department: department_id,
+                areas
             };
             $.ajax({
-                url: "/company-structure/company/department/create",
+                url: "/company-structure/company/department/" + department_id + "/area/create",
                 method: "POST",
                 data: JSON.stringify(data),
                 contentType: 'application/json',
