@@ -3,33 +3,20 @@
 
 <head>
     <title>ISO Risk Evaluation Software</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <style>
-        #table {
-            margin: auto;
-            max-width: auto;
-            align-items: center;
-            border: 1px solid #9C9C9C;
-            background-color: #ffffff;
-        }
-    </style>
+    <%- include('library.ejs') -%>
 </head>
 
 <body>
-    <%- include('header.ejs') -%>
+    <%- include('menu.ejs') -%>
 
         <br>
         </br>
         <br>
         </br>
 
-        <div class="container">
+        <div class="container-fluid">
             <br />
-            <h2 align="center">
+            <h2 class="text-center">
                 <%= data.name  %>
             </h2>
             <input type="text" id="company" value="<%= data._id  %>" hidden disabled>
@@ -45,7 +32,7 @@
                         <td></td>
                     </tr>
                 </table>
-                <div align="center">
+                <div class="text-center">
                     <button type="button" name="save" id="save" class="btn btn-info">Save</button>
                 </div>
                 <br />

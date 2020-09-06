@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>ISO Risk Evaluation Software</title>
+    <%- include('library.ejs') -%>
+</head>
+
+<body>
+    <%- include('menu.ejs') -%>
+
+        <br>
+        </br>
+        <br>
+        </br>
+
+        <div class="container-fluid">
+            <br />
+            <h2 class="text-center">
+                <%= data.name  %>
+            </h2>
+            <input type="text" id="area" value="<%= data._id  %>" hidden disabled>
+            <br />
+            <div class="table-responsive">
+                <table class="table table-bordered" id="crud_table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th rowspan="2" width="30%" class="text-center">Activity Name</th>
+                            <th rowspan="2">Activity Type</th>
+                            <th rowspan="2">Activity Location</th>
+                            <th colspan="5" class="text-center">Activity Operation</th>
+                            <th colspan="5" class="text-center">Activity Effect</th>
+                            <th rowspan="2" class="text-center"><button type="button" name="add" id="add" class="btn btn-success btn-xs">+</button></th>
+                        </tr>
+                        <tr>
+                            <th class="text-center">staff</th>
+                            <th class="text-center">vendor</th>
+                            <th class="text-center">customer</th>
+                            <th class="text-center">community</th>
+                            <th class="text-center">etc</th>
+                            <th class="text-center">staff</th>
+                            <th class="text-center">vendor</th>
+                            <th class="text-center">customer</th>
+                            <th class="text-center">community</th>
+                            <th class="text-center">etc</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td contenteditable="true" class="activity_name"></td>
+                            <td><select class="form-control activity_type">
+                            <option value="routine">routine</option>
+                            <option value="non-routine">non-routine</option>
+                          </select></td>
+                            <td><select class="form-control activity_location">
+                            <option value="inside">inside</option>
+                            <option value="outside">outside</option>
+                          </select></td>
+                            <td><input class="form-check-inline activity_op_staff" type="checkbox"></td>
+                            <td><input class="form-check-inline activity_op_vendor" type="checkbox"></td>
+                            <td><input class="form-check-inline activity_op_customer" type="checkbox"></td>
+                            <td><input class="form-check-inline activity_op_community" type="checkbox"></td>
+                            <td contenteditable="true" class="activity_op_etc"></td>
+                            <td><input class="form-check-inline activity_ef_staff" type="checkbox"></td>
+                            <td><input class="form-check-inline activity_ef_vendor" type="checkbox"></td>
+                            <td><input class="form-check-inline activity_ef_customer" type="checkbox"></td>
+                            <td><input class="form-check-inline activity_ef_community" type="checkbox"></td>
+                            <td contenteditable="true" class="activity_ef_etc"></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="text-center">
+                    <button type="button" name="save" id="save" class="btn btn-info">Save</button>
+                </div>
+                <br />
+                <div id="inserted_item_data"></div>
+            </div>
+        </div>
+</body>
+
+</html>
+
+<script>
+    $(document).ready(function() {
+        var count = 1;
+        $('#add').click(function() {
+            count = count + 1;
+            var html_code = "<tr id='row" + count + "'>";
+            html_code += "<td contenteditable='true' class='activity_name'></td>";
+            html_code += "<td><select class='form-control activity_type'><option value='routine'>routine</option><option value='non-routine'>non-routine</option></select></td>";
+            html_code += "<td><select class='form-control activity_location'><option value='inside'>inside</option><option value='outside'>outside</option></select></td>";
+            html_code += "<td><input class='form-check-inline activity_op_staff' type='checkbox'></td>";
+            html_code += "<td><input class='form-check-inline activity_op_vendor' type='checkbox'></td>";
+            html_code += "<td><input class='form-check-inline activity_op_customer' type='checkbox'></td>";
+            html_code += "<td><input class='form-check-inline activity_op_community' type='checkbox'></td>";
+            html_code += "<td contenteditable='true' class='activity_op_etc'></td>";
+            html_code += "<td><input class='form-check-inline activity_ef_staff' type='checkbox'></td>";
+            html_code += "<td><input class='form-check-inline activity_ef_vendor' type='checkbox'></td>";
+            html_code += "<td><input class='form-check-inline activity_ef_customer' type='checkbox'></td>";
+            html_code += "<td><input class='form-check-inline activity_ef_community' type='checkbox'></td>";
+            html_code += "<td contenteditable='true' class='activity_ef_etc'></td>";
+            html_code += "<td><button type='button' name='remove' data-row='row" + count + "' class='btn btn-danger btn-xs remove'>-</button></td>";
+            html_code += "</tr>";
+            $('#crud_table').append(html_code);
+        });
+
+        $(document).on('click', '.remove', function() {
+            var delete_row = $(this).data("row");
+            $('#' + delete_row).remove();
+        });
+
+        $('#save').click(function() {
+            var company_id = $('#company').val();
+            var department_name = [];
+            $('.department_name').each(function() {
+                department_name.push($(this).text());
+            });
+            var data = {
+                company_id: company_id,
+                department: department_name
+            };
+            $.ajax({
+                url: "/company-structure/company/department/create",
+                method: "POST",
+                data: JSON.stringify(data),
+                contentType: 'application/json',
+                success: function(data) {
+                    alert(data);
+                    $("td[contentEditable='true']").text("");
+                    for (var i = 2; i <= count; i++) {
+                        $('#row' + i + '').remove();
+                    }
+                    fetch_item_data();
+                }
+            });
+        });
+
+        $(document).on('click', '.deleteDepartment', function() {
+            var department_id = $(this).data("id");
+            var company_id = $('#company').val();
+
+            var data = {
+                company: company_id,
+                department: department_id
+            };
+
+            alert('delete ' + department_id);
+
+            $.ajax({
+                url: "/company-structure/company/department/delete",
+                method: "DELETE",
+                data: JSON.stringify(data),
+                contentType: 'application/json',
+                success: function(data) {
+                    alert(data);
+                    fetch_item_data();
+                }
+            });
+        });
+
+        function fetch_item_data() {
+            var area_id = $('#area').val();
+            $.ajax({
+                url: "/company-structure/company/department/area/" + area_id + "/activity",
+                method: "GET",
+                success: function(data) {
+                    $('#inserted_item_data').html(data);
+                }
+            })
+        }
+        fetch_item_data();
+
+    });
+</script>

@@ -33,4 +33,4 @@ const activitySchema = new schema({
 });
 //create collection
 module.exports.activitySchemas = activitySchema;
-module.exports.ActivityModel = connectDB.mongoose.model('acitivities', activitySchema);
+module.exports.ActivityModel = connectDB.mongoose.model('activities', activitySchema);
