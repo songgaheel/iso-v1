@@ -25,7 +25,7 @@
                 <table class="table table-bordered" id="crud_table">
                     <thead class="thead-dark">
                         <tr>
-                            <th rowspan="2" width="30%" class="text-center">Activity Name</th>
+                            <th rowspan="2" width="25%" class="text-center">Activity Name</th>
                             <th rowspan="2">Activity Type</th>
                             <th rowspan="2">Activity Location</th>
                             <th colspan="5" class="text-center">Activity Operation</th>
@@ -56,15 +56,15 @@
                             <option value="inside">inside</option>
                             <option value="outside">outside</option>
                           </select></td>
-                            <td><input class="form-check-inline activity_op_staff" type="checkbox"></td>
-                            <td><input class="form-check-inline activity_op_vendor" type="checkbox"></td>
-                            <td><input class="form-check-inline activity_op_customer" type="checkbox"></td>
-                            <td><input class="form-check-inline activity_op_community" type="checkbox"></td>
+                            <td><input class="form-check-inline activity_op_staff" type="checkbox" value="true"></td>
+                            <td><input class="form-check-inline activity_op_vendor" type="checkbox" value="true"></td>
+                            <td><input class="form-check-inline activity_op_customer" type="checkbox" value="true"></td>
+                            <td><input class="form-check-inline activity_op_community" type="checkbox" value="true"></td>
                             <td contenteditable="true" class="activity_op_etc"></td>
-                            <td><input class="form-check-inline activity_ef_staff" type="checkbox"></td>
-                            <td><input class="form-check-inline activity_ef_vendor" type="checkbox"></td>
-                            <td><input class="form-check-inline activity_ef_customer" type="checkbox"></td>
-                            <td><input class="form-check-inline activity_ef_community" type="checkbox"></td>
+                            <td><input class="form-check-inline activity_ef_staff" type="checkbox" value="true"></td>
+                            <td><input class="form-check-inline activity_ef_vendor" type="checkbox" value="true"></td>
+                            <td><input class="form-check-inline activity_ef_customer" type="checkbox" value="true"></td>
+                            <td><input class="form-check-inline activity_ef_community" type="checkbox" value="true"></td>
                             <td contenteditable="true" class="activity_ef_etc"></td>
                             <td></td>
                         </tr>
@@ -90,15 +90,15 @@
             html_code += "<td contenteditable='true' class='activity_name'></td>";
             html_code += "<td><select class='form-control activity_type'><option value='routine'>routine</option><option value='non-routine'>non-routine</option></select></td>";
             html_code += "<td><select class='form-control activity_location'><option value='inside'>inside</option><option value='outside'>outside</option></select></td>";
-            html_code += "<td><input class='form-check-inline activity_op_staff' type='checkbox'></td>";
-            html_code += "<td><input class='form-check-inline activity_op_vendor' type='checkbox'></td>";
-            html_code += "<td><input class='form-check-inline activity_op_customer' type='checkbox'></td>";
-            html_code += "<td><input class='form-check-inline activity_op_community' type='checkbox'></td>";
+            html_code += "<td><input class='form-check-inline activity_op_staff' type='checkbox' value='true'></td>";
+            html_code += "<td><input class='form-check-inline activity_op_vendor' type='checkbox' value='true'></td>";
+            html_code += "<td><input class='form-check-inline activity_op_customer' type='checkbox' value='true'></td>";
+            html_code += "<td><input class='form-check-inline activity_op_community' type='checkbox' value='true'></td>";
             html_code += "<td contenteditable='true' class='activity_op_etc'></td>";
-            html_code += "<td><input class='form-check-inline activity_ef_staff' type='checkbox'></td>";
-            html_code += "<td><input class='form-check-inline activity_ef_vendor' type='checkbox'></td>";
-            html_code += "<td><input class='form-check-inline activity_ef_customer' type='checkbox'></td>";
-            html_code += "<td><input class='form-check-inline activity_ef_community' type='checkbox'></td>";
+            html_code += "<td><input class='form-check-inline activity_ef_staff' type='checkbox' value='true'></td>";
+            html_code += "<td><input class='form-check-inline activity_ef_vendor' type='checkbox' value='true'></td>";
+            html_code += "<td><input class='form-check-inline activity_ef_customer' type='checkbox' value='true'></td>";
+            html_code += "<td><input class='form-check-inline activity_ef_community' type='checkbox' value='true'></td>";
             html_code += "<td contenteditable='true' class='activity_ef_etc'></td>";
             html_code += "<td><button type='button' name='remove' data-row='row" + count + "' class='btn btn-danger btn-xs remove'>-</button></td>";
             html_code += "</tr>";
@@ -111,17 +111,132 @@
         });
 
         $('#save').click(function() {
-            var company_id = $('#company').val();
-            var department_name = [];
-            $('.department_name').each(function() {
-                department_name.push($(this).text());
+            alert('save activity');
+            var area_id = $('#area').val();
+            var activity_name = [];
+            var activity_type = [];
+            var activity_location = [];
+            var activity_op_staff = [];
+            var activity_op_vendor = [];
+            var activity_op_customer = [];
+            var activity_op_community = [];
+            var activity_op_etc = [];
+            var activity_op_etc_en = [];
+            var activity_ef_staff = [];
+            var activity_ef_vendor = [];
+            var activity_ef_customer = [];
+            var activity_ef_community = [];
+            var activity_ef_etc = [];
+            var activity_ef_etc_en = [];
+            $('.activity_name').each(function() {
+                activity_name.push($(this).text());
             });
+            $('.activity_type').each(function() {
+                activity_type.push($(this).val());
+            });
+            $('.activity_location').each(function() {
+                activity_location.push($(this).val());
+            });
+            $('.activity_op_staff').each(function() {
+                if ($(this).is(":checked"))
+                    activity_op_staff.push($(this).val());
+                else
+                    activity_op_staff.push('false');
+            });
+            $('.activity_op_vendor').each(function() {
+                if ($(this).is(":checked"))
+                    activity_op_vendor.push($(this).val());
+                else
+                    activity_op_vendor.push('false');
+            });
+            $('.activity_op_customer').each(function() {
+                if ($(this).is(":checked"))
+                    activity_op_customer.push($(this).val());
+                else
+                    activity_op_customer.push('false');
+            });
+            $('.activity_op_community').each(function() {
+                if ($(this).is(":checked"))
+                    activity_op_community.push($(this).val());
+                else
+                    activity_op_community.push('false');
+            });
+            $('.activity_op_etc').each(function() {
+                if ($(this).text() == "") {
+                    activity_op_etc_en.push('false');
+                    activity_op_etc.push($(this).text());
+                } else {
+                    activity_op_etc_en.push('true');
+                    activity_op_etc.push($(this).text());
+                }
+            });
+            $('.activity_ef_staff').each(function() {
+                if ($(this).is(":checked"))
+                    activity_ef_staff.push($(this).val());
+                else
+                    activity_ef_staff.push('false');
+            });
+            $('.activity_ef_vendor').each(function() {
+                if ($(this).is(":checked"))
+                    activity_ef_vendor.push($(this).val());
+                else
+                    activity_ef_vendor.push('false');
+            });
+            $('.activity_ef_customer').each(function() {
+                if ($(this).is(":checked"))
+                    activity_ef_customer.push($(this).val());
+                else
+                    activity_ef_customer.push('false');
+            });
+            $('.activity_ef_community').each(function() {
+                if ($(this).is(":checked"))
+                    activity_ef_community.push($(this).val());
+                else
+                    activity_ef_community.push('false');
+            });
+            $('.activity_ef_etc').each(function() {
+                if ($(this).text() == "") {
+                    activity_ef_etc_en.push('false');
+                    activity_ef_etc.push($(this).text());
+                } else {
+                    activity_ef_etc_en.push('true');
+                    activity_ef_etc.push($(this).text());
+                }
+            });
+            var activity = [{}];
+            for (let index = 0; index < activity_name.length; index++) {
+                activity[index] = {
+                    name: activity_name[index],
+                    activityType: activity_type[index],
+                    location: activity_location[index],
+                    operation: {
+                        staff: activity_op_staff[index],
+                        vendor: activity_op_vendor[index],
+                        customer: activity_op_customer[index],
+                        community: activity_op_community[index],
+                        etc: {
+                            enable: activity_op_etc_en[index],
+                            detail: activity_op_etc[index]
+                        }
+                    },
+                    effect: {
+                        staff: activity_ef_staff[index],
+                        vendor: activity_ef_vendor[index],
+                        customer: activity_ef_customer[index],
+                        community: activity_ef_community[index],
+                        etc: {
+                            enable: activity_ef_etc_en[index],
+                            detail: activity_ef_etc[index]
+                        }
+                    }
+                };
+            }
             var data = {
-                company_id: company_id,
-                department: department_name
+                area: area_id,
+                activity
             };
             $.ajax({
-                url: "/company-structure/company/department/create",
+                url: "/company-structure/company/department/area/" + area_id + "/activity/create",
                 method: "POST",
                 data: JSON.stringify(data),
                 contentType: 'application/json',
@@ -136,19 +251,19 @@
             });
         });
 
-        $(document).on('click', '.deleteDepartment', function() {
-            var department_id = $(this).data("id");
-            var company_id = $('#company').val();
+        $(document).on('click', '.deleteActivity', function() {
+            var acitivity_id = $(this).data("id");
+            var area_id = $('#area').val();
 
             var data = {
-                company: company_id,
-                department: department_id
+                area: area_id,
+                activity: acitivity_id
             };
 
-            alert('delete ' + department_id);
+            alert('delete ' + acitivity_id);
 
             $.ajax({
-                url: "/company-structure/company/department/delete",
+                url: "/company-structure/company/department/area/" + area_id + "/activity/delete",
                 method: "DELETE",
                 data: JSON.stringify(data),
                 contentType: 'application/json',

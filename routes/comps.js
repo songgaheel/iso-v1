@@ -11,6 +11,8 @@ router
     .post("/company-structure/company/department/:id/area/create", compController.AreaCreate)
     .delete("/company-structure/company/department/:id/area/delete", compController.AreaDelete)
     .get("/company-structure/company/department/area/:id", compController.AreaRender)
-    .get("/company-structure/company/department/area/:id/activity", compController.ActivityList);
+    .get("/company-structure/company/department/area/:id/activity", compController.ActivityList)
+    .post("/company-structure/company/department/area/:id/activity/create", compController.ActivityCreate)
+    .delete("/company-structure/company/department/area/:id/activity/delete", compController.ActivityDelete);
 
 module.exports = router;

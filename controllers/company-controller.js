@@ -158,10 +158,10 @@ async function ActivityList(req, res, next) {
     const area = req.params.id;
     const data = await Area.findOne({ _id: area })
         .populate('activities');
-    console.log(data);
+
     var html = '<br/><h3 class="text-center">Activities List</h3><div class="table-responsive">';
     html = html + '<table class="table table-bordered table-striped"><thead class="thead-dark"><tr>';
-    html = html + '<th rowspan="2" width="30%" class="text-center">Activity Name</th>';
+    html = html + '<th rowspan="2" width="25%" class="text-center">Activity Name</th>';
     html = html + '<th rowspan="2">Activity Type</th>';
     html = html + '<th rowspan="2">Activity Location</th>';
     html = html + '<th colspan="5" class="text-center">Activity Operation</th>';
@@ -181,22 +181,77 @@ async function ActivityList(req, res, next) {
     html = html + '<th class="text-center">etc</th>';
     html = html + '</tr></thead"><tbody>';
     for (let index = 0; index < data.activities.length; index++) {
-
+        if (data.activities[index].operation.staff) {
+            var OPstaff = 'checked disabled';
+        } else {
+            var OPstaff = 'disabled';
+        }
+        if (data.activities[index].operation.vendor) {
+            var OPvendor = 'checked disabled';
+        } else {
+            var OPvendor = 'disabled';
+        }
+        if (data.activities[index].operation.customer) {
+            var OPcustomer = 'checked disabled';
+        } else {
+            var OPcustomer = 'disabled';
+        }
+        if (data.activities[index].operation.community) {
+            var OPcommunity = 'checked disabled';
+        } else {
+            var OPcommunity = 'disabled';
+        }
+        if (data.activities[index].operation.etc.enable) {
+            var OPetc = 'checked disabled';
+            var OPetcDetail = data.activities[index].operation.etc.detail;
+        } else {
+            var OPetc = 'disabled';
+            var OPetcDetail = '';
+        }
+        //
+        if (data.activities[index].effect.staff) {
+            var EFstaff = 'checked disabled';
+        } else {
+            var EFstaff = 'disabled';
+        }
+        if (data.activities[index].effect.vendor) {
+            var EFvendor = 'checked disabled';
+        } else {
+            var EFvendor = 'disabled';
+        }
+        if (data.activities[index].effect.customer) {
+            var EFcustomer = 'checked disabled';
+        } else {
+            var EFcustomer = 'disabled';
+        }
+        if (data.activities[index].effect.community) {
+            var EFcommunity = 'checked disabled';
+        } else {
+            var EFcommunity = 'disabled';
+        }
+        if (data.activities[index].effect.etc.enable) {
+            var EFetc = 'checked disabled';
+            var EFetcDetail = data.activities[index].effect.etc.detail;
+        } else {
+            var EFetc = 'disabled';
+            var EFetcDetail = '';
+        }
+        //
         html = html + '<tr>';
         html = html + '<td >' + data.activities[index].name + '</td>';
         html = html + '<td >' + data.activities[index].activityType + '</td>';
         html = html + '<td >' + data.activities[index].location + '</td>';
-        html = html + '<td class="text-center">' + data.activities[index].operation.staff + '</td>';
-        html = html + '<td class="text-center">' + data.activities[index].operation.vendor + '</td>';
-        html = html + '<td class="text-center">' + data.activities[index].operation.customer + '</td>';
-        html = html + '<td class="text-center">' + data.activities[index].operation.community + '</td>';
-        html = html + '<td class="text-center">' + data.activities[index].operation.etc.enable + ' ' + data.activities[index].operation.etc.detail + '</td>';
-        html = html + '<td class="text-center">' + data.activities[index].effect.staff + '</td>';
-        html = html + '<td class="text-center">' + data.activities[index].effect.vendor + '</td>';
-        html = html + '<td class="text-center">' + data.activities[index].effect.customer + '</td>';
-        html = html + '<td class="text-center">' + data.activities[index].effect.community + '</td>';
-        html = html + '<td class="text-center">' + data.activities[index].effect.etc.enable + ' ' + data.activities[index].effect.etc.detail + '</td>';
-        html = html + '<td><button type="button" name="deleteActivity" data-id="' + data.activities[index]._id + '" class="btn btn-danger btn-xs deleteArea"><i class="fas fa-window-close"></i> Delete</button></td>';
+        html = html + '<td class="text-center"><input class="form-check-inline" type="checkbox" ' + OPstaff + '></td>';
+        html = html + '<td class="text-center"><input class="form-check-inline" type="checkbox" ' + OPvendor + '></td>';
+        html = html + '<td class="text-center"><input class="form-check-inline" type="checkbox" ' + OPcustomer + '></td>';
+        html = html + '<td class="text-center"><input class="form-check-inline" type="checkbox" ' + OPcommunity + '></td>';
+        html = html + '<td class="text-center"><input class="form-check-inline" type="checkbox" ' + OPetc + '> ' + OPetcDetail + '</td>';
+        html = html + '<td class="text-center"><input class="form-check-inline" type="checkbox" ' + EFstaff + '></td>';
+        html = html + '<td class="text-center"><input class="form-check-inline" type="checkbox" ' + EFvendor + '></td>';
+        html = html + '<td class="text-center"><input class="form-check-inline" type="checkbox" ' + EFcustomer + '></td>';
+        html = html + '<td class="text-center"><input class="form-check-inline" type="checkbox" ' + EFcommunity + '></td>';
+        html = html + '<td class="text-center"><input class="form-check-inline" type="checkbox" ' + EFetc + '> ' + EFetcDetail + '</td>';
+        html = html + '<td><button type="button" name="deleteActivity" data-id="' + data.activities[index]._id + '" class="btn btn-danger btn-xs deleteActivity"><i class="fas fa-window-close"></i> Delete</button></td>';
         /*html = html + '<td>' + data.activities[index].name + '</td>';
         html = html + '<td>' + data.activities[index].areaType + '</td>';
         html = html + '<td><a type="button" name="activityLink" data-id="' + data.areas[index]._id + '" class="btn btn-success btn-xs activityLink"><span class="glyphicon glyphicon-list-alt"></span> Detail</a> ';
@@ -209,6 +264,35 @@ async function ActivityList(req, res, next) {
     res.send(html);
 }
 
+async function ActivityCreate(req, res, next) {
+    const activity = req.body.activity;
+    const area = req.body.area;
+    const newActivity = [{}];
+
+    for (let index = 0; index < activity.length; index++) {
+        newActivity[index] = Activity(activity[index]);
+        await newActivity[index].save();
+        const UpdateDepartment = await Area.updateOne({ _id: area }, {
+            $push: { activities: newActivity[index]._id }
+        });
+        if (index == activity.length - 1) {
+            res.send('Create Activity successful');
+        }
+    }
+    console.log('Create Activity successful');
+}
+
+async function ActivityDelete(req, res, next) {
+    const activity = req.body.activity;
+    const area = req.body.area;
+    const Updatearea = await Area.updateOne({ _id: area }, {
+        $pull: { activities: activity }
+    });
+    const data = await Area.deleteOne({ _id: activity });
+
+    res.send('delete area complete');
+}
+
 module.exports.CompanyRender = CompanyRender;
 module.exports.DepartmentList = DepartmentList;
 module.exports.DepartmentCreate = DepartmentCreate;
@@ -219,3 +303,5 @@ module.exports.AreaCreate = AreaCreate;
 module.exports.AreaDelete = AreaDelete;
 module.exports.AreaRender = AreaRender;
 module.exports.ActivityList = ActivityList;
+module.exports.ActivityCreate = ActivityCreate;
+module.exports.ActivityDelete = ActivityDelete;
