@@ -23,19 +23,23 @@
             <br />
             <div class="table-responsive">
                 <table class="table table-bordered" id="crud_table">
-                    <tr>
-                        <th>Area Name</th>
-                        <th>Area Type</th>
-                        <th><button type="button" name="add" id="add" class="btn btn-success btn-xs">+</button></th>
-                    </tr>
-                    <tr>
-                        <td contenteditable="true" class="area_name"></td>
-                        <td><select class="form-control area_type">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th width="60%">Area Name</th>
+                            <th>Area Type</th>
+                            <th><button type="button" name="add" id="add" class="btn btn-success btn-xs">+</button></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td contenteditable="true" class="area_name"></td>
+                            <td><select class="form-control area_type">
                             <option value="inside">inside</option>
                             <option value="outside">outside</option>
                           </select></td>
-                        <td></td>
-                    </tr>
+                            <td></td>
+                        </tr>
+                    </tbody>
                 </table>
                 <div class="text-center">
                     <button type="button" name="save" id="save" class="btn btn-info">Save</button>

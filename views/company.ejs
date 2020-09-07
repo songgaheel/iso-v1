@@ -23,14 +23,18 @@
             <br />
             <div class="table-responsive">
                 <table class="table table-bordered" id="crud_table">
-                    <tr>
-                        <th>Department Name</th>
-                        <th><button type="button" name="add" id="add" class="btn btn-success btn-xs">+</button></th>
-                    </tr>
-                    <tr>
-                        <td contenteditable="true" class="department_name"></td>
-                        <td></td>
-                    </tr>
+                    <thead class="thead-dark">
+                        <tr>
+                            <th width="80%">Department Name</th>
+                            <th><button type="button" name="add" id="add" class="btn btn-success btn-xs">+</button></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td contenteditable="true" class="department_name"></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
                 </table>
                 <div class="text-center">
                     <button type="button" name="save" id="save" class="btn btn-info">Save</button>

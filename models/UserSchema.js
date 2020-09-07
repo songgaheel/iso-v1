@@ -13,3 +13,4 @@ const userSchema = new schema({
 });
 //create collection
 module.exports.userSchema = userSchema;
+module.exports.userModel = connectDB.mongoose.model('users', userSchema);

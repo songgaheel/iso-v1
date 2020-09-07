@@ -43,3 +43,4 @@ const workSchema = new schema({
     }]
 });
 module.exports.workSchema = workSchema;
+module.exports.workModel = connectDB.mongoose.model('works', workSchema);

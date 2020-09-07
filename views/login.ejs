@@ -3,56 +3,32 @@
 
 <head>
     <title>ISO Risk Evaluation Software</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <style>
-        body {
-            margin: auto;
-            padding: auto;
-            align-items: center;
-        }
-        
-        #login .container {
-            max-width: 600pt;
-            align-items: center;
-            border: 1px solid #9C9C9C;
-            background-color: #ffffff;
-        }
-    </style>
+    <%- include('library.ejs') -%>
 </head>
-<!------ Include the above in your HEAD tag ---------->
 
 <body>
 
-    <div id="login">
-        <h3 class="text-center pt-5">
-            <%= data.pageName %>
-        </h3>
-        <div class="container">
-
-            <form id="login-form" class="form" action="" method="post">
-                <div class="<%= data.class%>">
-                    <%= data.message %>
-                </div>
-                <div class="form-group">
-                    <label for="username" class="text-info">Username:</label><br>
-                    <input type="text" name="username" id="username" class="form-control">
-                </div>
-                <div class="form-group">
-                    <label for="password" class="text-info">Password:</label><br>
-                    <input type="password" name="password" id="password" class="form-control">
-                </div>
-                <div class="form-group">
-                    <input type="submit" name="submit" class="btn btn-info btn-md" value="submit">
-                </div>
-            </form>
-
-        </div>
+    <h3 class="text-center pt-5">
+        <%= data.pageName %>
+    </h3>
+    <div class="container">
+        <form action="/login" method="POST">
+            <div class="<%= data.class%>">
+                <%= data.message %>
+            </div>
+            <div class="form-group">
+                <label for="username" class="text-info">Username:</label><br>
+                <input type="text" name="username" id="username" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="password" class="text-info">Password:</label><br>
+                <input type="password" name="password" id="password" class="form-control">
+            </div>
+            <div class="text-right">
+                <button type="submit" class="btn btn-lg btn-primary">Login</button>
+            </div>
+        </form>
     </div>
-
 
 </body>
 

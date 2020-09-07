@@ -3,77 +3,62 @@
 
 <head>
     <title>ISO Risk Evaluation Software</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <style>
-        #table {
-            margin: auto;
-            max-width: auto;
-            align-items: center;
-            border: 1px solid #9C9C9C;
-            background-color: #ffffff;
-        }
-    </style>
+    <%- include('library.ejs') -%>
 </head>
 
 <body>
-    <%- include('header'); -%>
+    <%- include('menu'); -%>
 
         <br>
         </br>
         <br>
         </br>
 
-        <div class="container">
-            <a href="#" class="btn btn-primary btn-xs "><b>+</b>เพิ่มทะเบียนงานใหม่</a>
+        <div class="container-fluid">
+            <a href="/work/create/1" class="btn btn-primary btn-xs "><b>+</b>เพิ่มทะเบียนงานใหม่</a>
             <br></br>
-            <div id="table" class="table-responsive">
-                <table class="table table-striped ">
-                    <thead>
-                        <tr>
-                            <th>ชื่องาน</th>
-                            <th>บริษัท</th>
-                            <th>หน่วยงาน</th>
-                            <th>ผู้จัดทำ</th>
-                            <th>วันที่จัดทำ</th>
-                            <th>สถานะ</th>
-                            <th class="text-center">Action</th>
-                        </tr>
-                    </thead>
-                    <tr>
-                        <td>ทะเบียนงาน 1</td>
-                        <td>บริษัท 1</td>
-                        <td>หน่วยงาน 1</td>
-                        <td>ผู้ใช้ 1</td>
-                        <td>วัน เดือน ปี</td>
-                        <td><span class="label label-success">เสร็จสิ้น</span></td>
-                        <td class="text-center"><a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-list-alt"></span> Report</a> <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Delete</a></td>
-                    </tr>
-                    <tr>
-                        <td>ทะเบียนงาน 1</td>
-                        <td>บริษัท 1</td>
-                        <td>หน่วยงาน 1</td>
-                        <td>ผู้ใช้ 1</td>
-                        <td>วัน เดือน ปี</td>
-                        <td><span class="label label-warning">กำลังดำเนินการ</span></td>
-                        <td class="text-center"><a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-list-alt"></span> Report</a> <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Delete</a></td>
-                    </tr>
-                    <tr>
-                        <td>ทะเบียนงาน 1</td>
-                        <td>บริษัท 1</td>
-                        <td>หน่วยงาน 1</td>
-                        <td>ผู้ใช้ 1</td>
-                        <td>วัน เดือน ปี</td>
-                        <td><span class="label label-warning">กำลังดำเนินการ</span></td>
-                        <td class="text-center"><a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-list-alt"></span> Report</a> <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Delete</a></td>
-                    </tr>
-                </table>
-            </div>
+
+            <div id="inserted_item_data"></div>
+
         </div>
 
 </body>
 
 </html>
+
+<script>
+    $(document).ready(function() {
+        $(document).on('click', '.deleteWork', function() {
+            var work_id = $(this).data("id");
+
+            var data = {
+                work: work_id
+            };
+
+            alert('delete ' + work_id);
+
+            /*$.ajax({
+                url: "/home/work/delete",
+                method: "DELETE",
+                data: JSON.stringify(data),
+                contentType: 'application/json',
+                success: function(data) {
+                    alert(data);
+                    fetch_item_data();
+                }
+            });*/
+        });
+
+        function fetch_item_data() {
+            $.ajax({
+                url: "/home/work",
+                method: "GET",
+                success: function(data) {
+                    $('#inserted_item_data').html(data);
+                }
+            })
+        }
+        fetch_item_data();
+
+    });
+</script>

@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const session = require('express-session');
 
 const authRoute = require("./routes/auth");
 const homeController = require("./controllers/home-controller");
@@ -20,7 +21,22 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 
+
+app.use(session({
+    secret: 'keyboard cat',
+    resave: false,
+    saveUninitialized: true
+}));
+
+app.get('/', (req, res, next) => {
+    const sess = req.session;
+    if (sess.username) {
+        return res.redirect('/home');
+    }
+    res.redirect('/login');
+});
 app.use(authRoute);
 app.use(workRoute);
 app.use(workEvalRoute);

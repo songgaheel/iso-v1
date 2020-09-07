@@ -9,19 +9,23 @@ const Area = AreaSchema.AreaModel;
 const Activity = ActivitySchema.ActivityModel;
 
 async function CompanyRender(req, res, next) {
-    const data = await Company.find({})
-    res.render("company", {
-        data: {
-            name: data[0].name,
-            _id: data[0]._id
-        }
-    });
+    const sess = req.session;
+    if (sess.username) {
+        const data = await Company.find({})
+        res.render("company", {
+            data: {
+                name: data[0].name,
+                _id: data[0]._id
+            }
+        });
+    }
+    res.redirect('/login');
 }
 
 async function DepartmentList(req, res, next) {
     const data = await Company.find({})
         .populate('departments');
-    var html = '<br/><h3 align="center">Department List</h3><div class="table-responsive"><table class="table table-bordered table-striped"><tr><th>Department Name</th><th></th></tr>';
+    var html = '<br/><h3 align="center">Department List</h3><div class="table-responsive"><table class="table table-bordered table-striped"><thead class="thead-dark"><tr><th width="80%">Department Name</th><th></th></tr></thead><tbody>';
     for (let index = 0; index < data[0].departments.length; index++) {
 
         html = html + '<tr>';
@@ -31,7 +35,7 @@ async function DepartmentList(req, res, next) {
         html = html + '</tr>'
     }
 
-    html = html + '</table></div>'
+    html = html + '</tbody></table></div>'
     res.send(html);
 }
 
@@ -79,17 +83,18 @@ async function DepartmentDelete(req, res, next) {
 }
 
 async function DepartmentRender(req, res, next) {
-    const department = req.params.id;
-    //console.log(department);
-    const data = await Department.findOne({ _id: department });
-    //res.send(data);
-    //console.log(data);
-    res.render("department", {
-        data: {
-            name: data.name,
-            _id: data._id
-        }
-    });
+    const sess = req.session;
+    if (sess.username) {
+        const department = req.params.id;
+        const data = await Department.findOne({ _id: department });
+        res.render("department", {
+            data: {
+                name: data.name,
+                _id: data._id
+            }
+        });
+    }
+    res.redirect('/login');
 }
 
 async function AreaList(req, res, next) {
@@ -97,7 +102,7 @@ async function AreaList(req, res, next) {
     const data = await Department.findOne({ _id: department_id })
         .populate('areas');
     //console.log(data);
-    var html = '<br/><h3 class="text-center">Area List</h3><div class="table-responsive"><table class="table table-bordered table-striped"><tr><th>Area Name</th><th>Area Type</th><th></th></tr>';
+    var html = '<br/><h3 class="text-center">Area List</h3><div class="table-responsive"><table class="table table-bordered table-striped"><thead class="thead-dark"><tr><th width="60%">Area Name</th><th>Area Type</th><th></th></tr></thead><tbody>';
     for (let index = 0; index < data.areas.length; index++) {
 
         html = html + '<tr>';
@@ -107,7 +112,7 @@ async function AreaList(req, res, next) {
         html = html + '<button type="button" name="deleteArea" data-id="' + data.areas[index]._id + '" class="btn btn-danger btn-xs deleteArea"><i class="fas fa-window-close"></i> Delete</button></td>';
         html = html + '</tr>'
     }
-    html = html + '</table></div>'
+    html = html + '</tbody></table></div>'
     res.send(html);
 }
 
@@ -141,17 +146,18 @@ async function AreaDelete(req, res, next) {
 }
 
 async function AreaRender(req, res, next) {
-    const area = req.params.id;
-    //console.log(department);
-    const data = await Area.findOne({ _id: area });
-    //res.send(data);
-    //console.log(data);
-    res.render("area", {
-        data: {
-            name: data.name,
-            _id: data._id
-        }
-    });
+    const sess = req.session;
+    if (sess.username) {
+        const area = req.params.id;
+        const data = await Area.findOne({ _id: area });
+        res.render("area", {
+            data: {
+                name: data.name,
+                _id: data._id
+            }
+        });
+    }
+    res.redirect('/login');
 }
 
 async function ActivityList(req, res, next) {
