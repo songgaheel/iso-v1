@@ -46,20 +46,21 @@ async function workCreate2(req, res, next) {
         user: userData._id,
         progress: '1'
     });
-    console.log(work);
     //await work.save();
     const departmentData = await Department.findOne({ _id: data.department })
         .populate('areas');
-    console.log(departmentData);
     res.render("work-create-2", {
         data: {
             pageName: "กำหนดพื้นที่สำหรับทะเบียนงาน",
             message: "ISO Risk Evaluation Software",
-            department: departmentData
+            department: departmentData,
+            work: work
         }
     });
 }
 const workCreate3 = (req, res, next) => {
+    const data = req.body;
+    console.log(data);
     res.render("work-create-3", {
         data: {
             pageName: "กำหนดกิจกรรมในพื้นที่ภายใน",

@@ -17,7 +17,7 @@
                 <%= data.pageName %>
             </h3>
             <div class="container">
-                <form>
+                <form class="form" action="/work/create/3" method="POST">
                     <div id="table" class="table-responsive">
                         <table class="table table-striped ">
                             <thead>
@@ -31,8 +31,8 @@
                                     <% data.department.areas.forEach(area => { %>
                                         <% if (area.areaType == 'inside') { %>
                                             <div class="form-check">
-                                                <input type="checkbox" class="form-check-input" value="">
-                                                <label class="form-check-label"><%= area.name %></label>
+                                                <input type="checkbox" class="form-check-input inside" name="insideAreas" value="" data-id="<%= area._id %>">
+                                                <label class="form-check-label" for="insideAreas"><%= area.name %></label>
                                             </div>
                                             <% } });%>
                                 </td>
@@ -40,8 +40,8 @@
                                     <% data.department.areas.forEach(area => { %>
                                         <% if (area.areaType == 'outside') { %>
                                             <div class="form-check">
-                                                <input type="checkbox" class="form-check-input" value="">
-                                                <label class="form-check-label"><%= area.name %></label>
+                                                <input type="checkbox" class="form-check-input outside" name="outsideAreas" value="" data-id="<%= area._id %>">
+                                                <label class="form-check-label" for="outsideAreas"><%= area.name %></label>
                                             </div>
                                             <% } });%>
                                 </td>
@@ -49,7 +49,7 @@
                         </table>
                     </div>
                     <div class="form-group">
-                        <input type="submit" name="submit" class="btn btn-info btn-md" value="Next">
+                        <input type="submit" name="work" class="btn btn-info btn-md next" value="Next" data-id="<%= data.work._id %>">
                     </div>
                 </form>
             </div>
@@ -57,3 +57,30 @@
 </body>
 
 </html>
+
+<script>
+    $(document).ready(function() {
+        $('.inside').click(function() {
+            var id = $(this).data("id");
+            if ($(this).is(':checked')) {
+                $(this).val(id);
+            } else {
+                $(this).val("");
+            }
+        });
+
+        $('.outside').click(function() {
+            var id = $(this).data("id");
+            if ($(this).is(':checked')) {
+                $(this).val(id);
+            } else {
+                $(this).val("");
+            }
+        });
+
+        $('.next').click(function() {
+            var id = $(this).data("id");
+            $(this).val(id);
+        })
+    });
+</script>
