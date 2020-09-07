@@ -34,8 +34,7 @@ app.get('/', (req, res, next) => {
     const sess = req.session;
     if (sess.username) {
         return res.redirect('/home');
-    }
-    res.redirect('/login');
+    } else { res.redirect('/login'); }
 });
 app.use(authRoute);
 app.use(workRoute);

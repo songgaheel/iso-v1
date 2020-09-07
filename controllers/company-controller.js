@@ -18,8 +18,7 @@ async function CompanyRender(req, res, next) {
                 _id: data[0]._id
             }
         });
-    }
-    res.redirect('/login');
+    } else { res.redirect('/login'); }
 }
 
 async function DepartmentList(req, res, next) {
@@ -93,8 +92,7 @@ async function DepartmentRender(req, res, next) {
                 _id: data._id
             }
         });
-    }
-    res.redirect('/login');
+    } else { res.redirect('/login'); }
 }
 
 async function AreaList(req, res, next) {
@@ -156,8 +154,7 @@ async function AreaRender(req, res, next) {
                 _id: data._id
             }
         });
-    }
-    res.redirect('/login');
+    } else { res.redirect('/login'); }
 }
 
 async function ActivityList(req, res, next) {

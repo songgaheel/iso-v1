@@ -18,31 +18,29 @@
             </h3>
             <div class="container">
                 <p></p>
-                <form id="login-form" class="form" action="" method="post">
+                <form class="form" action="/work/create/2" method="POST">
                     <div class="form-group">
-                        <label for="username" class="text-info">ชื่อทะเบียนงาน:</label><br>
-                        <input type="text" name="username" id="username" class="form-control">
+                        <label for="name" class="text-info">ชื่อทะเบียนงาน:</label><br>
+                        <input type="text" name="name" id="name" class="form-control">
                     </div>
                     <div class="form-group">
-                        <label for="password" class="text-info">ชื่อผู้จัดทำ:</label><br>
-                        <input type="text" name="password" id="password" class="form-control">
+                        <label for="user" class="text-info">ชื่อผู้จัดทำ:</label><br>
+                        <input type="text" name="user" id="user" class="form-control" value="<%= data.user.name %> <%= data.user.surname %>" disabled>
                     </div>
                     <div class="form-group">
                         <label for="company" class="text-info">บริษัท:</label><br>
                         <select name="company" id="company" class="form-control">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
+                            <% data.company.forEach(company => { %>
+                                <option value="<%= company._id %>"><%= company.name %></option>
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="department" class="text-info">หน่วยงาน:</label><br>
                         <select name="department" id="department" class="form-control">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
+                            <%  company.departments.forEach(department => {%>
+                                <option value="<%= department._id %>"><%= department.name %></option>
+                                
+                            <% });}); %>
                         </select>
                     </div>
                     <div class="form-group">

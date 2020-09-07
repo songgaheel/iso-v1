@@ -17,8 +17,7 @@ async function home(req, res, next) {
                 message: "ISO Risk Evaluation Software",
             }
         });
-    }
-    res.redirect('/login');
+    } else { res.redirect('/login'); }
 }
 
 async function WorkList(req, res, next) {
@@ -28,7 +27,6 @@ async function WorkList(req, res, next) {
             .populate('company')
             .populate('department')
             .populate('user');
-        console.log(data);
         var html = '<div id="table" class="table-responsive"><table class="table table-bordered "><thead class="thead-dark"><tr><th width="30%" class="text-center">ชื่องาน</th><th class="text-center">บริษัท</th><th class="text-center">หน่วยงาน</th><th class="text-center">ผู้จัดทำ</th><th class="text-center">วันที่จัดทำ</th><th class="text-center">สถานะ</th><th class="text-center" width="15%"></th></tr></thead></tbody>';
         for (let index = 0; index < data.length; index++) {
 
@@ -36,7 +34,7 @@ async function WorkList(req, res, next) {
             html = html + '<td>' + data[index].name + '</td>';
             html = html + '<td>' + data[index].company.name + '</td>';
             html = html + '<td>' + data[index].department.name + '</td>';
-            html = html + '<td>' + data[index].user.name + '</td>';
+            html = html + '<td>' + data[index].user.name + '' + data[index].user.surname + '</td>';
             html = html + '<td>' + data[index].createDate + '</td>';
             html = html + '<td>' + data[index].progress + '</td>';
             html = html + '<td><a type="button" name="activityLink" href="/work/registration/' + data[index]._id + '" class="btn btn-success btn-xs activityLink"><i class="fas fa-list"></i> Detail</a> ';
@@ -45,8 +43,7 @@ async function WorkList(req, res, next) {
         }
         html = html + '</tbody></table></div>'
         res.send(html);
-    }
-    res.redirect('/login');
+    } else { res.redirect('/login'); }
 }
 
 module.exports.home = home;
