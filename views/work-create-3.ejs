@@ -18,103 +18,71 @@
             </h3>
             <div class="container">
                 <br></br>
-                <h4>Inside 1</h4>
+                <h4>
+                    <?= data.area.name ?>
+                </h4>
                 <p></p>
                 <form>
                     <div id="table" class="table-responsive">
                         <table class="table table-striped ">
                             <thead>
                                 <tr>
-                                    <th>กิจกรรม</th>
-                                    <th>ลักษณะงาน</th>
-                                    <th>พื้นที่ปฏิบัติงาน</th>
-                                    <th>ผู้รับผิดชอบ</th>
-                                    <th>ผู้ได้รับผลกระทบ</th>
+                                    <th></th>
+                                    <th rowspan="2" width="25%" class="text-center">กิจกรรม</th>
+                                    <th rowspan="2">ลักษณะงาน</th>
+                                    <th rowspan="2">พื้นที่ปฏิบัติงาน</th>
+                                    <th colspan="5" class="text-center">ผู้รับผิดชอบ</th>
+                                    <th colspan="5" class="text-center">ผู้ได้รับผลกระทบ</th>
                                 </tr>
-                            </thead>
-                            <tr>
-                                <td>
-                                    <div class="form-check">
-                                        <input type="checkbox" class="form-check-input" value="">
-                                        <label class="form-check-label">กิจกรรม 1</label>
-                                    </div>
-                                </td>
-                                <td>งานประจำ</td>
-                                <td>ภายใน</td>
-                                <td>Staff</td>
-                                <td>Staff</td>
-                            </tr>
-                        </table>
-                    </div>
-
-
-
-                    <br></br>
-                    <h4>Inside 2</h4>
-                    <p></p>
-
-                    <div id="table" class="table-responsive">
-                        <table class="table table-striped ">
-                            <thead>
                                 <tr>
-                                    <th>กิจกรรม</th>
-                                    <th>ลักษณะงาน</th>
-                                    <th>พื้นที่ปฏิบัติงาน</th>
-                                    <th>ผู้รับผิดชอบ</th>
-                                    <th>ผู้ได้รับผลกระทบ</th>
+                                    <th class="text-center">staff</th>
+                                    <th class="text-center">vendor</th>
+                                    <th class="text-center">customer</th>
+                                    <th class="text-center">community</th>
+                                    <th class="text-center">etc</th>
+                                    <th class="text-center">staff</th>
+                                    <th class="text-center">vendor</th>
+                                    <th class="text-center">customer</th>
+                                    <th class="text-center">community</th>
+                                    <th class="text-center">etc</th>
                                 </tr>
                             </thead>
                             <tr>
                                 <td>
-                                    <div class="form-check">
-                                        <input type="checkbox" class="form-check-input" value="">
-                                        <label class="form-check-label">กิจกรรม 2</label>
-                                    </div>
+                                    <div class="form-check"><input type="checkbox" class="form-check-input" value="" data-id="<%= data.area.activity._id %>"></div>
                                 </td>
-                                <td>งานประจำ</td>
-                                <td>ภายใน</td>
-                                <td>Staff</td>
-                                <td>Staff</td>
-                            </tr>
-                        </table>
-                    </div>
-
-                    <br></br>
-                    <h4>Inside 3</h4>
-                    <p></p>
-
-                    <div id="table" class="table-responsive">
-                        <table class="table table-striped ">
-                            <thead>
-                                <tr>
-                                    <th>กิจกรรม</th>
-                                    <th>ลักษณะงาน</th>
-                                    <th>พื้นที่ปฏิบัติงาน</th>
-                                    <th>ผู้รับผิดชอบ</th>
-                                    <th>ผู้ได้รับผลกระทบ</th>
-                                </tr>
-                            </thead>
-                            <tr>
                                 <td>
-                                    <div class="form-check">
-                                        <input type="checkbox" class="form-check-input" value="">
-                                        <label class="form-check-label">กิจกรรม 2</label>
-                                    </div>
+                                    <%= data.area.activity.name %>
+
                                 </td>
-                                <td>งานประจำ</td>
-                                <td>ภายใน</td>
-                                <td>Staff</td>
-                                <td>Staff</td>
+                                <td>
+                                    <%= data.area.activity.activityType %>
+                                </td>
+                                <td>
+                                    <%= data.area.activity.location %>
+                                </td>
+                                <td class="text-center"><input class="form-check-inline" type="checkbox" <?=d ata.area.activity.OPstaff ?>></td>
+                                <td class="text-center"><input class="form-check-inline" type="checkbox" <?=d ata.area.activity.OPvendor ?>></td>
+                                <td class="text-center"><input class="form-check-inline" type="checkbox" <?=d ata.area.activity.OPcustomer ?>></td>
+                                <td class="text-center"><input class="form-check-inline" type="checkbox" <?=d ata.area.activity.OPcommunity ?>></td>
+                                <td class="text-center"><input class="form-check-inline" type="checkbox" <?=d ata.area.activity.OPetc ?>>
+                                    <?= data.area.activity.OPetcDetail ?>
+                                </td>
+                                <td class="text-center"><input class="form-check-inline" type="checkbox" <?=d ata.area.activity.EFstaff ?>></td>
+                                <td class="text-center"><input class="form-check-inline" type="checkbox" <?=d ata.area.activity.EFvendor ?>></td>
+                                <td class="text-center"><input class="form-check-inline" type="checkbox" <?=d ata.area.activity.EFcustomer ?>></td>
+                                <td class="text-center"><input class="form-check-inline" type="checkbox" <?=d ata.area.activity.EFcommunity ?>></td>
+                                <td class="text-center"><input class="form-check-inline" type="checkbox" <?=d ata.area.activity.EFetc ?>>
+                                    <?= data.area.activity.EFetcDetail ?>
+                                </td>
                             </tr>
                         </table>
-                    </div>
-
-                    <div class="form-group">
-                        <input type="submit" name="submit" class="btn btn-info btn-md" value="Next">
-                    </div>
+                        <div class="form-group">
+                            <input type="submit" name="submit" class="btn btn-info btn-md" value="Next">
+                        </div>
                 </form>
+                </div>
             </div>
-        </div>
 </body>
 
 </html>

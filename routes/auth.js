@@ -5,5 +5,6 @@ const homeController = require("../controllers/home-controller");
 router
     .get("/login", loginController.login)
     .post("/login", loginController.auth)
-    .get("/home/work", homeController.WorkList);
+    .get("/home/work", homeController.WorkList)
+    .delete("/home/work/delete", homeController.workDelete);
 module.exports = router;

@@ -46,5 +46,13 @@ async function WorkList(req, res, next) {
     } else { res.redirect('/login'); }
 }
 
+async function workDelete(req, res, next) {
+    data = req.body;
+    const work = data.work
+    const workDelete = await Work.deleteOne({ _id: work });
+    res.send('delete' + work + 'complete');
+}
+
 module.exports.home = home;
 module.exports.WorkList = WorkList;
+module.exports.workDelete = workDelete;

@@ -37,7 +37,7 @@
 
             alert('delete ' + work_id);
 
-            /*$.ajax({
+            $.ajax({
                 url: "/home/work/delete",
                 method: "DELETE",
                 data: JSON.stringify(data),
@@ -46,7 +46,7 @@
                     alert(data);
                     fetch_item_data();
                 }
-            });*/
+            });
         });
 
         function fetch_item_data() {

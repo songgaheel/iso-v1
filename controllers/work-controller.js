@@ -38,15 +38,18 @@ async function workCreate1(req, res, next) {
 async function workCreate2(req, res, next) {
     const data = req.body;
     const username = req.session.username;
+    const createDate = Date.now();
     const userData = await User.findOne({ username: username });
     const work = Work({
         name: data.name,
         company: data.company,
         department: data.department,
         user: userData._id,
-        progress: '1'
+        progress: '1',
+        createDate: createDate
+
     });
-    //await work.save();
+    await work.save();
     const departmentData = await Department.findOne({ _id: data.department })
         .populate('areas');
     res.render("work-create-2", {
@@ -58,15 +61,41 @@ async function workCreate2(req, res, next) {
         }
     });
 }
-const workCreate3 = (req, res, next) => {
+async function workCreate3(req, res, next) {
     const data = req.body;
-    console.log(data);
-    res.render("work-create-3", {
-        data: {
-            pageName: "กำหนดกิจกรรมในพื้นที่ภายใน",
-            message: "ISO Risk Evaluation Software",
-        }
+    const work = req.body.work;
+    const insideAreas = req.body.insideAreas;
+    const outsideAreas = req.body.outsideAreas;
+    const inside = {
+        areas: insideAreas
+    }
+    const outside = {
+        areas: outsideAreas
+    }
+    console.log(work);
+    console.log(insideAreas);
+    console.log(outsideAreas);
+    console.log(inside);
+    console.log(outside);
+
+    const Updatework = await Work.updateOne({ _id: work }, {
+        progress: '2',
+        insideAreas: inside,
+        outsideAreas: outside
     });
+
+    const workFind = await Work.findOne({ _id: work })
+        .populate('user')
+        .populate('company')
+        .populate('department')
+        .populate({
+            path: 'insideAreas',
+            populate: { path: 'areas' }
+        })
+        .populate({
+            path: 'outsideAreas',
+            populate: { path: 'areas' }
+        });
 }
 const workCreate4 = (req, res, next) => {
     res.render("work-create-4", {
@@ -84,6 +113,8 @@ const workRegistration = (req, res, next) => {
         }
     });
 }
+
+
 module.exports.workCreate1 = workCreate1;
 module.exports.workCreate2 = workCreate2;
 module.exports.workCreate3 = workCreate3;
